@@ -11,16 +11,15 @@ import { readFileToArr } from './userAgentReader.js'
 
 /** 设置通关时间，默认30，单位：秒 */
 let rankTime = 30
-/** 日常挑战通关地址 */
+
+/** 日常挑战通关地址  修改此处选择【日常通关】还是【话题通关】 */
 let url = `https://cat-match.easygame2021.com/sheep/v1/game/game_over?rank_score=1&rank_state=1&rank_time=${rankTime}&rank_role=1&skin=1`
 /** 话题通关地址  `https://cat-match.easygame2021.com/sheep/v1/game/topic_game_over?rank_score=1&rank_state=1&rank_time=${rankTime}&rank_role=2&skin=31`*/
 
-/** 请求头信息添加 t 为 token，你自己的token，需要抓包获取 */
+/** 请求头信息添加 t 为 token，你自己的token，需要抓包获取， */
 const t = ''
 
-
 const headers = {
-  /** 你自己的token，需要抓包获取，抓包不会劝你不要再继续下去了 */
   "Host": "cat-match.easygame2021.com",
   'User-Agent': 'Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-US) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0',
   t
@@ -50,10 +49,9 @@ inq.prompt([
     }
     
     if (headers['t'] && rankTime) {
-      /** 生成 user-agent */
+      /** 生成 user-agent 随机读一个*/
       readFileToArr((userAgent) => {
         R({
-          /** 修改此处选择【日常通关】还是【话题通关】 */
           url,
           method: 'GET',
           json: true,
